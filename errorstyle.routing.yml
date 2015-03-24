@@ -1,0 +1,9 @@
+errorstyle.form:
+  path: '/error-style/form'
+  defaults:
+    _form: '\Drupal\errorstyle\Form\ErrorStyleForm'
+    _title: 'Form error style test'
+  requirements:
+    _permission: 'access content'
+  options:
+    _admin_route: TRUE

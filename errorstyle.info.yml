@@ -1,0 +1,4 @@
+name: Error Style
+description: Provides form to test errors on various form elements.
+core: 8.x
+type: module
