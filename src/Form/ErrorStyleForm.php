@@ -28,6 +28,7 @@ class ErrorStyleForm extends FormBase {
       $form[$element_name] = array(
         '#title' => ucfirst($type),
         '#type' => $type,
+        '#description' => ucfirst($type) . ' description.',
       );
 
       if (is_array($defaults)) {
