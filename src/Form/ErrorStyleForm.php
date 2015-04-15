@@ -54,7 +54,7 @@ class ErrorStyleForm extends FormBase {
       'text_format_content' => array(
         '#type' => 'text_format',
         '#required' => TRUE,
-        '#title' => 'Text_format required',
+        '#title' => 'Text area required',
       ),
       'managed_file' => array(
         '#type' => 'managed_file',
