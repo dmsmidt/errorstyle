@@ -23,7 +23,11 @@ class ErrorStyleForm extends FormBase {
    * Builds a form for a single entity field.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    // Prevent browsers HTML5 error checking
     $form['#attributes'] += array('novalidate' => TRUE);
+
+    // Set of form elements with default error handling
+    // Errors are set on the first level element (and bubble up to child elements by default)
     foreach ($this->getFormElements() as $type => $defaults) {
       $element_name = 'test_' . $type;
       $form[$element_name] = array(
@@ -36,6 +40,29 @@ class ErrorStyleForm extends FormBase {
         $form[$element_name] += $defaults;
       }
     }
+
+    // Additional fields, without default error handling
+    $form += array(
+      'fieldset_without_error' => array(
+        '#type' => 'fieldset',
+        '#title' => t('Fieldset without error'),
+        'textfield_with_error' => array(
+          '#type' => 'textfield',
+          '#title' => 'Textfield with error',
+        ),
+      ),
+      'text_format_content' => array(
+        '#type' => 'text_format',
+        '#required' => TRUE,
+        '#title' => 'Text_format required',
+      ),
+      'managed_file' => array(
+        '#type' => 'managed_file',
+        '#required' => TRUE,
+        '#title' => 'Managed file',
+      ),
+    );
+
     return $form;
   }
 
@@ -43,13 +70,17 @@ class ErrorStyleForm extends FormBase {
    *  {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
+
+    // Default error handling
+    // Supersedes errors from 'required' fields
     $elements = $this->getFormElements();
     foreach ($elements as $type => $defaults) {
       $form_state->setErrorByName('test_' . $type,  t('Invalid @type', array('@type' => $type)));
     }
+
     // Additional field validations
     $form_state->setErrorByName('fieldset_with_error',  t('Invalid fieldset'));
-    $form_state->setErrorByName('textfield_width_error',  t('Invalid textfield'));
+    $form_state->setErrorByName('textfield_with_error',  t('Invalid textfield'));
   }
 
   /**
@@ -95,9 +126,9 @@ class ErrorStyleForm extends FormBase {
       'file' => '',
 //      'hidden' => '',
       'image_button' => '',
-      'item' => array(
-        '#markup' => 'Item text',
-      ),
+//      'item' => array(
+//        '#markup' => 'Item text',
+//      ),
       'language_select' => '',
       'machine_name' => array(
         '#required' => FALSE,
@@ -173,33 +204,20 @@ class ErrorStyleForm extends FormBase {
         ],
       ),
       'weight' => '',
-      'managed_file' => '',
+ //     'managed_file' => '',
       'language_configuration' => array(
         '#entity_information' => array(
           'entity_type' => 'block_content',
           'bundle' => 'article',
         ),
       ),
-
-      // Additional fields.
-      'container' => array(
-        'fieldset_with_error' => array(
-          '#type' => 'fieldset',
-          '#title' => t('Fieldset with error'),
-          'textfield' => array(
-            '#type' => 'textfield',
-            '#title' => 'Textfield without errors',
-          ),
+//      'text_format' => '',
+      'fieldset' => array(
+        'textfield' => array(
+          '#type' => 'textfield',
+          '#title' => 'Textfield without errors',
         ),
-        'fieldset_without_error' => array(
-          '#type' => 'fieldset',
-          '#title' => t('Fieldset without error'),
-          'textfield_width_error' => array(
-            '#type' => 'textfield',
-            '#title' => 'Textfield with error'
-          ),
-        ),
-      )
+      ),
     );
   }
 
