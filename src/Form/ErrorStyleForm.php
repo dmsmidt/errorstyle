@@ -23,6 +23,7 @@ class ErrorStyleForm extends FormBase {
    * Builds a form for a single entity field.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $form['#attributes'] += array('novalidate' => TRUE);
     foreach ($this->getFormElements() as $type => $defaults) {
       $element_name = 'test_' . $type;
       $form[$element_name] = array(
@@ -44,8 +45,11 @@ class ErrorStyleForm extends FormBase {
   public function validateForm(array &$form, FormStateInterface $form_state) {
     $elements = $this->getFormElements();
     foreach ($elements as $type => $defaults) {
-      $form_state->setErrorByName('test_' . $type,  t('Invalid @type', array('@type' => ucfirst($type))));
+      $form_state->setErrorByName('test_' . $type,  t('Invalid @type', array('@type' => $type)));
     }
+    // Additional field validations
+    $form_state->setErrorByName('fieldset_with_error',  t('Invalid fieldset'));
+    $form_state->setErrorByName('textfield_width_error',  t('Invalid textfield'));
   }
 
   /**
@@ -178,11 +182,24 @@ class ErrorStyleForm extends FormBase {
       ),
 
       // Additional fields.
-      'fieldset' => array(
-        'textfield' => array(
-          '#type' => 'textfield',
-        )
-      ),
+      'container' => array(
+        'fieldset_with_error' => array(
+          '#type' => 'fieldset',
+          '#title' => t('Fieldset with error'),
+          'textfield' => array(
+            '#type' => 'textfield',
+            '#title' => 'Textfield without errors',
+          ),
+        ),
+        'fieldset_without_error' => array(
+          '#type' => 'fieldset',
+          '#title' => t('Fieldset without error'),
+          'textfield_width_error' => array(
+            '#type' => 'textfield',
+            '#title' => 'Textfield with error'
+          ),
+        ),
+      )
     );
   }
 
@@ -190,6 +207,4 @@ class ErrorStyleForm extends FormBase {
     return FALSE;
   }
 
-  }
-
-
+}
