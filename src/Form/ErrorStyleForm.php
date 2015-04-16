@@ -46,24 +46,47 @@ class ErrorStyleForm extends FormBase {
       'fieldset_without_error' => array(
         '#type' => 'fieldset',
         '#title' => t('Fieldset without error'),
-        '#description' => ' Normal fieldset without an error on the fieldset itself.',
+        '#description' => 'Normal fieldset without an error on the fieldset itself description',
         'textfield_with_error' => array(
           '#type' => 'textfield',
           '#title' => 'Textfield with error',
-          '#description' => 'Error on field inside a fieldset',
+          '#description' => 'Error on field inside a fieldset description',
         ),
       ),
       'text_format_content' => array(
         '#type' => 'text_format',
         '#required' => TRUE,
         '#title' => 'Text area with filter selection (required)',
-        '#description' => 'Text area with format switcher',
+        '#description' => 'Text area with format switcher description',
       ),
       'managed_file' => array(
         '#type' => 'managed_file',
         '#required' => TRUE,
         '#title' => 'Managed file',
-        '#description' => 'Upload widget',
+        '#description' => 'Upload widget description',
+      ),
+      'fieldset_parent' => array(
+        '#type' => 'fieldset',
+        '#title' => 'Fieldset parent with tree',
+        '#tree' => TRUE,
+        '#description' => 'Fieldset with #tree => true',
+        'test_child_required' => array(
+          '#type' => 'textfield',
+          '#title' => t('Textfield child required'),
+          '#description' => 'Textfield child required description',
+          '#required' => TRUE,
+        ),
+        'test_child_custom_error' => array(
+          '#type' => 'textfield',
+          '#title' => t('Textfield child width custom error'),
+          '#description' => 'Textfield child width custom error description',
+        ),
+      ),
+      'submit' => array(
+        '#type' => 'submit',
+        '#value' => 'Submit',
+        '#weight' => 100,
+        '#prefix' => '<br />'
       ),
     );
 
@@ -83,8 +106,10 @@ class ErrorStyleForm extends FormBase {
     }
 
     // Additional field validations
-    $form_state->setErrorByName('fieldset_with_error',  t('Invalid fieldset'));
     $form_state->setErrorByName('textfield_with_error',  t('Invalid textfield'));
+    $form_state->setErrorByName('fieldset_parent][test_child_custom_error',  t('Invalid textfield with custom error'));
+
+    $form_state->setErrorByName('', t('Test error which is not related to a real element'));
   }
 
   /**
@@ -95,19 +120,6 @@ class ErrorStyleForm extends FormBase {
 
   protected function getFormElements() {
     return array(
-      'datelist' => array(
-        '#default_value' => new DrupalDateTime('2000-01-01 00:00:00'),
-        '#date_part_order' => array('month', 'day', 'year', 'hour', 'minute', 'ampm'),
-        '#date_text_parts' => array('year'),
-        '#date_year_range' => '2010:2020',
-        '#date_increment' => 15,
-      ),
-      'datetime' => array(
-        '#default_value' => new DrupalDateTime('2000-01-01 00:00:00'),
-        '#date_date_element' => 'date',
-        '#date_time_element' => 'none',
-        '#date_year_range' => '2010:+3',
-      ),
       'entity_autocomplete' => array(
         '#target_type' => 'user',
       ),
@@ -126,6 +138,20 @@ class ErrorStyleForm extends FormBase {
       ),
       'color' => '',
       'date' => '',
+      'datelist' => array(
+        '#default_value' => new DrupalDateTime('2000-01-01 00:00:00'),
+        '#date_part_order' => array('month', 'day', 'year', 'hour', 'minute', 'ampm'),
+        '#date_text_parts' => array('year'),
+        '#date_year_range' => '2010:2020',
+        '#date_increment' => 15,
+      ),
+      'datetime' => array(
+        '#default_value' => new DrupalDateTime('2000-01-01 00:00:00'),
+        '#date_date_element' => 'date',
+        '#date_time_element' => 'none',
+        '#date_year_range' => '2010:+3',
+        '#required' => TRUE,
+      ),
       'email' => '',
       'file' => '',
 //      'hidden' => '',
@@ -162,10 +188,6 @@ class ErrorStyleForm extends FormBase {
           'Check him',
           'Check her',
         )
-      ),
-      'submit' => array(
-        '#value' => 'Submit',
-        '#weight' => 100,
       ),
 //      'table' => array(
 //        '#header' => array(
@@ -211,18 +233,19 @@ class ErrorStyleForm extends FormBase {
 //        ],
 //      ),
       'weight' => '',
- //     'managed_file' => '',
-      'language_configuration' => array(
-        '#entity_information' => array(
-          'entity_type' => 'block_content',
-          'bundle' => 'article',
-        ),
-      ),
+//     'managed_file' => '',
+//      'language_configuration' => array(
+//        '#entity_information' => array(
+//          'entity_type' => 'block_content',
+//          'bundle' => 'article',
+//        ),
+//      ),
 //      'text_format' => '',
       'fieldset' => array(
         'textfield' => array(
           '#type' => 'textfield',
           '#title' => 'Textfield without errors',
+          '#description' => 'Textfield without errors description',
         ),
       ),
     );
