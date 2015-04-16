@@ -46,20 +46,24 @@ class ErrorStyleForm extends FormBase {
       'fieldset_without_error' => array(
         '#type' => 'fieldset',
         '#title' => t('Fieldset without error'),
+        '#description' => ' Normal fieldset without an error on the fieldset itself.',
         'textfield_with_error' => array(
           '#type' => 'textfield',
           '#title' => 'Textfield with error',
+          '#description' => 'Error on field inside a fieldset',
         ),
       ),
       'text_format_content' => array(
         '#type' => 'text_format',
         '#required' => TRUE,
         '#title' => 'Text area required',
+        '#description' => 'Text area with format switcher',
       ),
       'managed_file' => array(
         '#type' => 'managed_file',
         '#required' => TRUE,
         '#title' => 'Managed file',
+        '#description' => 'Upload widget',
       ),
     );
 
@@ -107,9 +111,9 @@ class ErrorStyleForm extends FormBase {
       'entity_autocomplete' => array(
         '#target_type' => 'user',
       ),
-      'button' => array(
-        '#value' => 'Submit',
-      ),
+//      'button' => array(
+//        '#value' => 'Submit',
+//      ),
       'checkbox' => array(
         '#title' => 'Check me',
       ),
@@ -163,46 +167,46 @@ class ErrorStyleForm extends FormBase {
         '#value' => 'Submit',
         '#weight' => 100,
       ),
-      'table' => array(
-        '#header' => array(
-          'row1',
-          'row2',
-        ),
-        '#empty' => t('There is no label yet.'),
-        '#tabledrag' => array(
-          array(
-            'action' => 'order',
-            'relationship' => 'sibling',
-            'group' => 'weight',
-          ),
-        ),
-      ),
-      'tableselect' => array(
-        '#header' => array(
-          'row1',
-          'row2',
-        ),
-        '#empty' => t('There is no label yet.'),
-        '#tabledrag' => array(
-          array(
-            'action' => 'order',
-            'relationship' => 'sibling',
-            'group' => 'weight',
-          ),
-        ),
-      ),
+//      'table' => array(
+//        '#header' => array(
+//          'row1',
+//          'row2',
+//        ),
+//        '#empty' => t('There is no label yet.'),
+//        '#tabledrag' => array(
+//          array(
+//            'action' => 'order',
+//            'relationship' => 'sibling',
+//            'group' => 'weight',
+//          ),
+//        ),
+//      ),
+//      'tableselect' => array(
+//        '#header' => array(
+//          'row1',
+//          'row2',
+//        ),
+//        '#empty' => t('There is no label yet.'),
+//        '#tabledrag' => array(
+//          array(
+//            'action' => 'order',
+//            'relationship' => 'sibling',
+//            'group' => 'weight',
+//          ),
+//        ),
+//      ),
       'textfield' => '',
 //      'token' => '',
       'url' => '',
 //      'value' => '',
-      'vertical_tabs' => array(
-        '#parents' => ['visibility_tabs'],
-        '#attached' => [
-          'library' => [
-            'block/drupal.block',
-          ],
-        ],
-      ),
+//      'vertical_tabs' => array(
+//        '#parents' => ['visibility_tabs'],
+//        '#attached' => [
+//          'library' => [
+//            'block/drupal.block',
+//          ],
+//        ],
+//      ),
       'weight' => '',
  //     'managed_file' => '',
       'language_configuration' => array(
