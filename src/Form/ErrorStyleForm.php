@@ -56,7 +56,7 @@ class ErrorStyleForm extends FormBase {
       'text_format_content' => array(
         '#type' => 'text_format',
         '#required' => TRUE,
-        '#title' => 'Text area required',
+        '#title' => 'Text area with filter selection (required)',
         '#description' => 'Text area with format switcher',
       ),
       'managed_file' => array(
@@ -196,6 +196,9 @@ class ErrorStyleForm extends FormBase {
 //        ),
 //      ),
       'textfield' => '',
+      'textarea' => array(
+        '#rows' => 3,
+      ),
 //      'token' => '',
       'url' => '',
 //      'value' => '',
