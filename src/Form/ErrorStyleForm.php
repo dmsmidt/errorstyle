@@ -82,6 +82,23 @@ class ErrorStyleForm extends FormBase {
           '#description' => 'Textfield child width custom error description',
         ),
       ),
+      'details_closed' => array(
+        '#type' => 'details',
+        '#title' => 'Details closed',
+        '#open' => FALSE,
+        '#description' => 'Details description',
+        'test_child_required_2' => array(
+          '#type' => 'textfield',
+          '#title' => t('Textfield child required'),
+          '#description' => 'Textfield child required description',
+          '#required' => TRUE,
+        ),
+        'test_child_custom_error_2' => array(
+          '#type' => 'textfield',
+          '#title' => t('Textfield child width custom error 2'),
+          '#description' => 'Textfield child width custom error 2 description',
+        ),
+      ),
       'submit' => array(
         '#type' => 'submit',
         '#value' => 'Submit',
@@ -108,6 +125,7 @@ class ErrorStyleForm extends FormBase {
     // Additional field validations
     $form_state->setErrorByName('textfield_with_error',  t('Invalid textfield'));
     $form_state->setErrorByName('fieldset_parent][test_child_custom_error',  t('Invalid textfield with custom error'));
+    $form_state->setErrorByName('details_closed][test_child_custom_error_2',  t('Invalid textfield with custom error 2 inside closed details'));
 
     $form_state->setErrorByName('', t('Test error which is not related to a real element'));
   }
