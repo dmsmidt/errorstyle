@@ -43,11 +43,11 @@ class ErrorStyleForm extends FormBase {
 
     // Additional fields, without default error handling
     $form += array(
-      'submit_top' => array(
-        '#type' => 'submit',
-        '#value' => 'Submit',
-        '#weight' => -100,
-      ),
+//      'submit_top' => array(
+//        '#type' => 'submit',
+//        '#value' => 'Submit',
+//        '#weight' => -100,
+//      ),
       'fieldset_without_error' => array(
         '#type' => 'fieldset',
         '#title' => t('Fieldset without error'),
@@ -169,7 +169,7 @@ class ErrorStyleForm extends FormBase {
 //      'item' => array(
 //        '#markup' => 'Item text',
 //      ),
-      'language_select' => '',
+//      'language_select' => '',
       'machine_name' => array(
         '#required' => FALSE,
         '#machine_name' => array(
