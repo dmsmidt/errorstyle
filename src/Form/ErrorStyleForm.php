@@ -43,6 +43,11 @@ class ErrorStyleForm extends FormBase {
 
     // Additional fields, without default error handling
     $form += array(
+      'submit_top' => array(
+        '#type' => 'submit',
+        '#value' => 'Submit',
+        '#weight' => -100,
+      ),
       'fieldset_without_error' => array(
         '#type' => 'fieldset',
         '#title' => t('Fieldset without error'),
