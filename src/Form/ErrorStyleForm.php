@@ -178,7 +178,7 @@ class ErrorStyleForm extends FormBase {
       'email' => '',
       'file' => '',
 //      'hidden' => '',
-      'image_button' => '',
+//      'image_button' => '',
 //      'item' => array(
 //        '#markup' => 'Item text',
 //      ),
