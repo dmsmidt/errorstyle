@@ -146,19 +146,6 @@ class ErrorStyleForm extends FormBase {
       'entity_autocomplete' => array(
         '#target_type' => 'user',
       ),
-//      'button' => array(
-//        '#value' => 'Submit',
-//      ),
-      'checkbox' => array(
-        '#title' => 'Check me',
-      ),
-      'checkboxes' => array(
-        '#options' => array(
-          'Check me',
-          'Check him',
-          'Check her',
-        )
-      ),
       'color' => '',
       'date' => '',
       'datelist' => array(
@@ -197,6 +184,16 @@ class ErrorStyleForm extends FormBase {
         '#title' => 'Select me',
       ),
       'radios' => array(
+        '#options' => array(
+          'Check me',
+          'Check him',
+          'Check her',
+        )
+      ),
+      'checkbox' => array(
+        '#title' => 'Check me',
+      ),
+      'checkboxes' => array(
         '#options' => array(
           'Check me',
           'Check him',
