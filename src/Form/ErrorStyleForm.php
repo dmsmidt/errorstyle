@@ -43,11 +43,6 @@ class ErrorStyleForm extends FormBase {
 
     // Additional fields, without default error handling
     $form += array(
-//      'submit_top' => array(
-//        '#type' => 'submit',
-//        '#value' => 'Submit',
-//        '#weight' => -100,
-//      ),
       'fieldset_without_error' => array(
         '#type' => 'fieldset',
         '#title' => t('Fieldset without error'),
@@ -164,12 +159,6 @@ class ErrorStyleForm extends FormBase {
       ),
       'email' => '',
       'file' => '',
-//      'hidden' => '',
-//      'image_button' => '',
-//      'item' => array(
-//        '#markup' => 'Item text',
-//      ),
-//      'language_select' => '',
       'machine_name' => array(
         '#required' => FALSE,
         '#machine_name' => array(
@@ -209,58 +198,12 @@ class ErrorStyleForm extends FormBase {
           'Check her',
         )
       ),
-//      'table' => array(
-//        '#header' => array(
-//          'row1',
-//          'row2',
-//        ),
-//        '#empty' => t('There is no label yet.'),
-//        '#tabledrag' => array(
-//          array(
-//            'action' => 'order',
-//            'relationship' => 'sibling',
-//            'group' => 'weight',
-//          ),
-//        ),
-//      ),
-//      'tableselect' => array(
-//        '#header' => array(
-//          'row1',
-//          'row2',
-//        ),
-//        '#empty' => t('There is no label yet.'),
-//        '#tabledrag' => array(
-//          array(
-//            'action' => 'order',
-//            'relationship' => 'sibling',
-//            'group' => 'weight',
-//          ),
-//        ),
-//      ),
       'textfield' => '',
       'textarea' => array(
         '#rows' => 3,
       ),
-//      'token' => '',
       'url' => '',
-//      'value' => '',
-//      'vertical_tabs' => array(
-//        '#parents' => ['visibility_tabs'],
-//        '#attached' => [
-//          'library' => [
-//            'block/drupal.block',
-//          ],
-//        ],
-//      ),
       'weight' => '',
-//     'managed_file' => '',
-//      'language_configuration' => array(
-//        '#entity_information' => array(
-//          'entity_type' => 'block_content',
-//          'bundle' => 'article',
-//        ),
-//      ),
-//      'text_format' => '',
       'fieldset' => array(
         '#name' => 'fieldset',
         'fieldset_textfield' => array(
@@ -272,6 +215,13 @@ class ErrorStyleForm extends FormBase {
     );
   }
 
+  /**
+   * Callback to check, if machine name exist.
+   *
+   * @param $id
+   *
+   * @return bool
+   */
   public function exists($id) {
     return FALSE;
   }
