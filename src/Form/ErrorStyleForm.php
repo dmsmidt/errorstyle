@@ -104,6 +104,15 @@ class ErrorStyleForm extends FormBase {
           '#description' => 'Textfield child width custom error 2 description',
         ),
       ),
+      'container' => array(
+        '#type' => 'container',
+        '#description' => 'Container description',
+        'test_child_required_3' => array(
+          '#type' => 'textfield',
+          '#title' => t('Textfield child title'),
+          '#description' => 'Textfield child -- in a container',
+        ),c
+      ),
       'submit' => array(
         '#type' => 'submit',
         '#value' => 'Submit',
@@ -132,8 +141,12 @@ class ErrorStyleForm extends FormBase {
     $form_state->setErrorByName('fieldset_parent][test_child_custom_error',  t('Invalid textfield with custom error'));
     $form_state->setErrorByName('test_child_custom_error_2',  t('Invalid textfield with custom error 2 inside closed details'));
 
-    $form_state->setErrorByName('', t('Test error which is not related to a real element'));
-  }
+    $form_state->setErrorByName('', $this->t('Test error which is not related to a real element'));
+
+    $form_state->setErrorByName('container',  $this->t('Error called against Container.'));
+ }
+
+
 
   /**
    *  {@inheritdoc}
