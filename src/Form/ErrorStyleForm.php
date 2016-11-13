@@ -106,7 +106,7 @@ class ErrorStyleForm extends FormBase {
           '#type' => 'textfield',
           '#title' => t('Textfield child title'),
           '#description' => 'Textfield child -- in a container',
-        ),c
+        ),
       ),
       'submit' => array(
         '#type' => 'submit',
