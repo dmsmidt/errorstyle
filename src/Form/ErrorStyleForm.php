@@ -2,12 +2,15 @@
 
 namespace Drupal\errorstyle\Form;
 
-
-
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ * Provides a forms with (all) common form elements.
+ *
+ * @ingroup form_api
+ */
 class ErrorStyleForm extends FormBase {
 
   /**
@@ -23,11 +26,12 @@ class ErrorStyleForm extends FormBase {
    * Builds a form for a single entity field.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    // Prevent browsers HTML5 error checking
+    // Prevent browsers HTML5 error checking.
     $form['#attributes'] += array('novalidate' => TRUE);
 
-    // Set of form elements with default error handling
-    // Errors are set on the first level element (and bubble up to child elements by default)
+    // Set of form elements with default error handling.
+    // Errors are set on the first level element (and bubble up to child
+    // elements by default).
     foreach ($this->getFormElements() as $type => $defaults) {
       $element_name = 'test_' . $type;
       $form[$element_name] = array(
@@ -41,11 +45,11 @@ class ErrorStyleForm extends FormBase {
       }
     }
 
-    // Additional fields, without default error handling
+    // Additional fields, without default error handling.
     $form += array(
       'fieldset_without_error' => array(
         '#type' => 'fieldset',
-        '#title' => t('Fieldset without error'),
+        '#title' => $this->t('Fieldset without error'),
         '#description' => 'Normal fieldset without an error on the fieldset itself description',
         'textfield_with_error' => array(
           '#type' => 'textfield',
@@ -72,13 +76,13 @@ class ErrorStyleForm extends FormBase {
         '#description' => 'Fieldset with #tree => true',
         'test_child_required' => array(
           '#type' => 'textfield',
-          '#title' => t('Textfield child required'),
+          '#title' => $this->t('Textfield child required'),
           '#description' => 'Textfield child required description',
           '#required' => TRUE,
         ),
         'test_child_custom_error' => array(
           '#type' => 'textfield',
-          '#title' => t('Textfield child width custom error'),
+          '#title' => $this->t('Textfield child width custom error'),
           '#description' => 'Textfield child width custom error description',
         ),
       ),
@@ -89,13 +93,13 @@ class ErrorStyleForm extends FormBase {
         '#description' => 'Details description',
         'test_child_required_2' => array(
           '#type' => 'textfield',
-          '#title' => t('Textfield child required'),
+          '#title' => $this->t('Textfield child required'),
           '#description' => 'Textfield child required description',
           '#required' => TRUE,
         ),
         'test_child_custom_error_2' => array(
           '#type' => 'textfield',
-          '#title' => t('Textfield child width custom error 2'),
+          '#title' => $this->t('Textfield child width custom error 2'),
           '#description' => 'Textfield child width custom error 2 description',
         ),
       ),
@@ -104,7 +108,7 @@ class ErrorStyleForm extends FormBase {
         '#description' => 'Container description',
         'test_child_required_3' => array(
           '#type' => 'textfield',
-          '#title' => t('Textfield child title'),
+          '#title' => $this->t('Textfield child title'),
           '#description' => 'Textfield child -- in a container',
         ),
       ),
@@ -112,7 +116,7 @@ class ErrorStyleForm extends FormBase {
         '#type' => 'submit',
         '#value' => 'Submit',
         '#weight' => 100,
-        '#prefix' => '<br />'
+        '#prefix' => '<br />',
       ),
     );
 
@@ -120,35 +124,39 @@ class ErrorStyleForm extends FormBase {
   }
 
   /**
-   *  {@inheritdoc}
+   * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
 
-    // Default error handling
-    // Supersedes errors from 'required' fields
+    // Default error handling.
+    // Supersedes errors from 'required' fields.
     $elements = $this->getFormElements();
     foreach ($elements as $type => $defaults) {
-      $form_state->setErrorByName('test_' . $type,  t('Invalid @type', array('@type' => $type)));
+      $form_state->setErrorByName('test_' . $type, $this->t('Invalid @type', array('@type' => $type)));
     }
 
-    // Additional field validations
-    $form_state->setErrorByName('textfield_with_error',  t('Invalid textfield'));
-    $form_state->setErrorByName('fieldset_parent][test_child_custom_error',  t('Invalid textfield with custom error'));
-    $form_state->setErrorByName('test_child_custom_error_2',  t('Invalid textfield with custom error 2 inside closed details'));
+    // Additional field validations.
+    $form_state->setErrorByName('textfield_with_error', $this->t('Invalid textfield'));
+    $form_state->setErrorByName('fieldset_parent][test_child_custom_error', $this->t('Invalid textfield with custom error'));
+    $form_state->setErrorByName('test_child_custom_error_2', $this->t('Invalid textfield with custom error 2 inside closed details'));
 
     $form_state->setErrorByName('', $this->t('Test error which is not related to a real element'));
 
-    $form_state->setErrorByName('container',  $this->t('Error called against Container.'));
- }
-
-
+    $form_state->setErrorByName('container', $this->t('Error called against Container.'));
+  }
 
   /**
-   *  {@inheritdoc}
+   * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
   }
 
+  /**
+   * Create a set of basic form elements excluding common properties.
+   *
+   * @return array
+   *   Form elements.
+   */
   protected function getFormElements() {
     return array(
       'entity_autocomplete' => array(
@@ -158,7 +166,7 @@ class ErrorStyleForm extends FormBase {
       'date' => '',
       'datelist' => array(
         '#default_value' => new DrupalDateTime('2000-01-01 00:00:00'),
-        '#date_part_order' => array('month', 'day', 'year', 'hour', 'minute', 'ampm'),
+        '#date_part_order' => ['month', 'day', 'year', 'hour', 'minute', 'ampm'],
         '#date_text_parts' => array('year'),
         '#date_year_range' => '2010:2020',
         '#date_increment' => 15,
@@ -190,7 +198,7 @@ class ErrorStyleForm extends FormBase {
           'Check me',
           'Check him',
           'Check her',
-        )
+        ),
       ),
       'checkbox' => array(
         '#title' => 'Check me',
@@ -200,7 +208,7 @@ class ErrorStyleForm extends FormBase {
           'Check me',
           'Check him',
           'Check her',
-        )
+        ),
       ),
       'range' => '',
       'search' => '',
@@ -209,7 +217,7 @@ class ErrorStyleForm extends FormBase {
           'Check me',
           'Check him',
           'Check her',
-        )
+        ),
       ),
       'textfield' => '',
       'textarea' => array(
@@ -231,9 +239,11 @@ class ErrorStyleForm extends FormBase {
   /**
    * Callback to check, if machine name exist.
    *
-   * @param $id
+   * @param string $id
+   *   The machine name to check.
    *
    * @return bool
+   *   Always returns FALSE.
    */
   public function exists($id) {
     return FALSE;
