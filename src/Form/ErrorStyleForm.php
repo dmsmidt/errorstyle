@@ -50,24 +50,29 @@ class ErrorStyleForm extends FormBase {
       'fieldset_without_error' => array(
         '#type' => 'fieldset',
         '#title' => $this->t('Fieldset without error'),
-        '#description' => 'Normal fieldset without an error on the fieldset itself description',
-        'textfield_with_error' => array(
+        'fieldset_textfield' => array(
           '#type' => 'textfield',
-          '#title' => 'Textfield with error',
-          '#description' => 'Error on field inside a fieldset description',
+          '#title' => $this->t('Textfield without errors'),
         ),
       ),
-      'text_format_content' => array(
-        '#type' => 'text_format',
-        '#required' => TRUE,
-        '#title' => 'Text area with filter selection (required)',
-        '#description' => 'Text area with format switcher description',
+      'fieldset_with_error' => array(
+        '#type' => 'fieldset',
+        '#title' => $this->t('Fieldset with direct error'),
+        '#description' => $this->t('Fieldset with an error on the fieldset itself.'),
+        'fieldset_textfield' => array(
+          '#type' => 'textfield',
+          '#title' => $this->t('Textfield without errors')
+        ),
       ),
-      'managed_file' => array(
-        '#type' => 'managed_file',
-        '#required' => TRUE,
-        '#title' => 'Managed file',
-        '#description' => 'Upload widget description',
+      'fieldset_child_error' => array(
+        '#type' => 'fieldset',
+        '#title' => $this->t('Fieldset with child error'),
+        '#description' => $this->t('Fieldset with an error on the child field.'),
+        'textfield_with_error' => array(
+          '#type' => 'textfield',
+          '#title' => $this->t('Textfield with error'),
+          '#description' => $this->t('Error on field inside a fieldset description'),
+        ),
       ),
       'fieldset_parent' => array(
         '#type' => 'fieldset',
@@ -86,6 +91,18 @@ class ErrorStyleForm extends FormBase {
           '#description' => 'Textfield child width custom error description',
         ),
       ),
+      'text_format_content' => array(
+        '#type' => 'text_format',
+        '#required' => TRUE,
+        '#title' => 'Text area with filter selection (required)',
+        '#description' => 'Text area with format switcher description',
+      ),
+      'managed_file' => array(
+        '#type' => 'managed_file',
+        '#required' => TRUE,
+        '#title' => 'Managed file',
+        '#description' => 'Upload widget description',
+      ),
       'details_closed' => array(
         '#type' => 'details',
         '#title' => 'Details closed',
@@ -94,23 +111,55 @@ class ErrorStyleForm extends FormBase {
         'test_child_required_2' => array(
           '#type' => 'textfield',
           '#title' => $this->t('Textfield child required'),
-          '#description' => 'Textfield child required description',
           '#required' => TRUE,
         ),
         'test_child_custom_error_2' => array(
           '#type' => 'textfield',
           '#title' => $this->t('Textfield child width custom error 2'),
-          '#description' => 'Textfield child width custom error 2 description',
         ),
       ),
       'container' => array(
         '#type' => 'container',
-        '#description' => 'Container description',
+        '#description' => $this->t('Container description'),
         'test_child_required_3' => array(
           '#type' => 'textfield',
           '#title' => $this->t('Textfield child title'),
-          '#description' => 'Textfield child -- in a container',
+          '#description' => $this->t('Textfield child in a container'),
         ),
+      ),
+      'vertical_tabs' => array(
+        '#title' => $this->t('Vertical tabs'),
+        '#type' => 'vertical_tabs',
+      ),
+      'vertical_tabs_details_1' => array(
+        '#type' => 'details',
+        '#title' => $this->t('First group element'),
+        '#group' => 'vertical_tabs',
+        '#required' => TRUE,
+        'test_child_required_2' => array(
+          '#type' => 'textfield',
+          '#title' => $this->t('Textfield child required'),
+          '#required' => TRUE,
+        ),
+      ),
+      'vertical_tabs_details_2' => array(
+        '#type' => 'details',
+        '#title' => $this->t('Second group element'),
+        '#group' => 'vertical_tabs',
+        '#required' => TRUE,
+        'test_child_required_3' => array(
+          '#type' => 'textfield',
+          '#title' => $this->t('Second textfield child required'),
+          '#required' => TRUE,
+        ),
+      ),
+      'vertical_tabs_details_3' => array(
+        '#type' => 'details',
+        '#title' => $this->t('Third group element'),
+        '#group' => 'vertical_tabs',
+        'nothing' => array(
+          '#markup' => $this->t('Nothing here'),
+        )
       ),
       'submit' => array(
         '#type' => 'submit',
@@ -136,6 +185,7 @@ class ErrorStyleForm extends FormBase {
     }
 
     // Additional field validations.
+    $form_state->setErrorByName('fieldset_with_error', $this->t('Invalid fieldset'));
     $form_state->setErrorByName('textfield_with_error', $this->t('Invalid textfield'));
     $form_state->setErrorByName('fieldset_parent][test_child_custom_error', $this->t('Invalid textfield with custom error'));
     $form_state->setErrorByName('test_child_custom_error_2', $this->t('Invalid textfield with custom error 2 inside closed details'));
@@ -225,14 +275,6 @@ class ErrorStyleForm extends FormBase {
       ),
       'url' => '',
       'weight' => '',
-      'fieldset' => array(
-        '#name' => 'fieldset',
-        'fieldset_textfield' => array(
-          '#type' => 'textfield',
-          '#title' => 'Textfield without errors',
-          '#description' => 'Textfield without errors description',
-        ),
-      ),
     );
   }
 
