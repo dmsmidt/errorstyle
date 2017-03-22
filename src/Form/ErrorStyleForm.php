@@ -169,6 +169,43 @@ class ErrorStyleForm extends FormBase {
       ),
     );
 
+    /**
+     * Vertical tabs.
+     */
+    $form['vertical_tabs'] = [
+      '#type' => 'vertical_tabs',
+    ];
+    $form['meta'] = [
+      '#type' => 'details',
+      '#title' => 'First group element',
+      '#group' => 'vertical_tabs',
+    ];
+    $form['meta']['element'] = [
+      '#type' => 'textfield',
+      '#title' => 'First nested element in details element',
+      '#required' => TRUE,
+    ];
+    $form['meta_2'] = [
+      '#type' => 'details',
+      '#title' => 'Second group element',
+      '#group' => 'vertical_tabs',
+    ];
+    $form['meta_2']['element_2'] = [
+      '#type' => 'textfield',
+      '#title' => 'Second nested element in details element',
+      '#required' => FALSE,
+    ];
+    $form['meta_3'] = [
+      '#type' => 'details',
+      '#title' => 'Second group element',
+      '#group' => 'vertical_tabs',
+    ];
+    $form['meta_3']['element_2'] = [
+      '#type' => 'textfield',
+      '#title' => 'Second nested element in details element',
+      '#required' => FALSE,
+    ];
+
     return $form;
   }
 
@@ -182,6 +219,10 @@ class ErrorStyleForm extends FormBase {
     $elements = $this->getFormElements();
     foreach ($elements as $type => $defaults) {
       $form_state->setErrorByName('test_' . $type, $this->t('Invalid @type', array('@type' => $type)));
+    }
+
+    if ($form_state->getValue('container_error')) {
+      $form_state->setErrorByName('container', $this->t('Invalid container'));
     }
 
     // Additional field validations.
