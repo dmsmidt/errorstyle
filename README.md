@@ -21,4 +21,4 @@ The page with all form elements can be visited at `/error-style/form`.
 
 BrowserStack supports my Open Source contributions to Drupal and the development of this module.
 
-[![BrowserStack](browserstack_logo.svg)](https://www.browserstack.com)
+[![BrowserStack](https://cdn.rawgit.com/dmsmidt/errorstyle/8.x-1.x/browserstack_logo.svg)](https://www.browserstack.com)
