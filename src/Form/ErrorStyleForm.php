@@ -94,20 +94,20 @@ class ErrorStyleForm extends FormBase {
       'text_format_content' => array(
         '#type' => 'text_format',
         '#required' => TRUE,
-        '#title' => 'Text area with filter selection (required)',
+        '#title' => $this->t('Text area with filter selection (required)'),
         '#description' => 'Text area with format switcher description',
       ),
       'managed_file' => array(
         '#type' => 'managed_file',
         '#required' => TRUE,
-        '#title' => 'Managed file',
-        '#description' => 'Upload widget description',
+        '#title' => $this->t('Managed file'),
+        '#description' => $this->t('Upload widget description'),
       ),
       'details_closed' => array(
         '#type' => 'details',
-        '#title' => 'Details closed',
+        '#title' => $this->t('Details closed'),
         '#open' => FALSE,
-        '#description' => 'Details description',
+        '#description' => $this->t('Details description'),
         'test_child_required_2' => array(
           '#type' => 'textfield',
           '#title' => $this->t('Textfield child required'),
@@ -116,6 +116,16 @@ class ErrorStyleForm extends FormBase {
         'test_child_custom_error_2' => array(
           '#type' => 'textfield',
           '#title' => $this->t('Textfield child width custom error 2'),
+        ),
+        'nested_details_closed' => array(
+          '#type' => 'details',
+          '#title' => $this->t('Nested details closed'),
+          '#open' => FALSE,
+          'test_details_child_child_required' => array(
+            '#type' => 'textfield',
+            '#title' => $this->t('Nested details child textfield required'),
+            '#required' => TRUE,
+          ),
         ),
       ),
       'container' => array(
