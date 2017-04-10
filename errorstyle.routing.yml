@@ -7,3 +7,11 @@ errorstyle.form:
     _permission: 'access content'
   options:
     _admin_route: TRUE
+
+errorstyle.settings:
+  path: 'admin/config/errorstyle'
+  defaults:
+    _form: 'Drupal\errorstyle\Form\ErrorStyleSettingsForm'
+    _title: 'Errorstyle settings'
+  requirements:
+    _permission: 'access administration pages'
