@@ -47,6 +47,13 @@ class ErrorStyleForm extends FormBase {
    * Builds a form for a single entity field.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $config = $this->config('errorstyle.settings');
+
+    // Disable Inline Form Errors as neceessary.
+    if ($config->get('disable_inline_form_errors')) {
+      $form['#disable_inline_form_errors'] = TRUE;
+    }
+
     // Prevent browsers HTML5 error checking.
     $form['#attributes'] += array('novalidate' => TRUE);
 
