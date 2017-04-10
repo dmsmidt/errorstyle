@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ErrorStyleSettingsForm extends ConfigFormBase {
 
   /**
-   * Constructs a \Drupal\user\StatisticsSettingsForm object.
+   * Constructs a \Drupal\errorstyle\ErrorStyleSettingsForm object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
