@@ -17,6 +17,8 @@ Install and enable this module as any other Drupal module, you can follow the Dr
 
 The page with all form elements can be visited at `/error-style/form`.
 
+Form settings can be found at `admin/config/errorstyle`.
+
 ### Sponsor Note
 
 BrowserStack supports my Open Source contributions to Drupal and the development of this module.
