@@ -2,9 +2,11 @@
 
 namespace Drupal\errorstyle\Form;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a forms with (all) common form elements.
@@ -12,6 +14,25 @@ use Drupal\Core\Form\FormStateInterface;
  * @ingroup form_api
  */
 class ErrorStyleForm extends FormBase {
+
+  /**
+   * Constructs a \Drupal\errorstyle\ErrorStyleForm object.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The factory for configuration objects.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory) {
+    $this->setConfigFactory($config_factory);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('config.factory')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -26,6 +47,13 @@ class ErrorStyleForm extends FormBase {
    * Builds a form for a single entity field.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $config = $this->config('errorstyle.settings');
+
+    // Disable Inline Form Errors as neceessary.
+    if ($config->get('disable_inline_form_errors')) {
+      $form['#disable_inline_form_errors'] = TRUE;
+    }
+
     // Prevent browsers HTML5 error checking.
     $form['#attributes'] += array('novalidate' => TRUE);
 
