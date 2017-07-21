@@ -1,5 +1,5 @@
 errorstyle.settings:
-  title: Error Style
+  title: 'Error Style'
   description: 'Settings for Error Style test forms.'
   route_name: errorstyle.settings
   parent: system.admin_config_development
