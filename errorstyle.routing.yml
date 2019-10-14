@@ -14,4 +14,4 @@ errorstyle.settings:
     _form: 'Drupal\errorstyle\Form\ErrorStyleSettingsForm'
     _title: 'Errorstyle settings'
   requirements:
-    _permission: 'access administration pages'
+    _permission: 'administer site configuration'

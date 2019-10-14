@@ -55,18 +55,18 @@ class ErrorStyleForm extends FormBase {
     }
 
     // Prevent browsers HTML5 error checking.
-    $form['#attributes'] += array('novalidate' => TRUE);
+    $form['#attributes'] += ['novalidate' => TRUE];
 
     // Set of form elements with default error handling.
     // Errors are set on the first level element (and bubble up to child
     // elements by default).
     foreach ($this->getFormElements() as $type => $defaults) {
       $element_name = 'test_' . $type;
-      $form[$element_name] = array(
+      $form[$element_name] = [
         '#title' => ucfirst($type),
         '#type' => $type,
         '#description' => ucfirst($type) . ' description.',
-      );
+      ];
 
       if (is_array($defaults)) {
         $form[$element_name] += $defaults;
@@ -74,142 +74,142 @@ class ErrorStyleForm extends FormBase {
     }
 
     // Additional fields, without default error handling.
-    $form += array(
-      'fieldset_without_error' => array(
+    $form += [
+      'fieldset_without_error' => [
         '#type' => 'fieldset',
         '#title' => $this->t('Fieldset without error'),
-        'fieldset_textfield' => array(
+        'fieldset_textfield' => [
           '#type' => 'textfield',
           '#title' => $this->t('Textfield without errors'),
-        ),
-      ),
-      'fieldset_with_error' => array(
+        ],
+      ],
+      'fieldset_with_error' => [
         '#type' => 'fieldset',
         '#title' => $this->t('Fieldset with direct error'),
         '#description' => $this->t('Fieldset with an error on the fieldset itself.'),
-        'fieldset_textfield' => array(
+        'fieldset_textfield' => [
           '#type' => 'textfield',
-          '#title' => $this->t('Textfield without errors')
-        ),
-      ),
-      'fieldset_child_error' => array(
+          '#title' => $this->t('Textfield without errors'),
+        ],
+      ],
+      'fieldset_child_error' => [
         '#type' => 'fieldset',
         '#title' => $this->t('Fieldset with child error'),
         '#description' => $this->t('Fieldset with an error on the child field.'),
-        'textfield_with_error' => array(
+        'textfield_with_error' => [
           '#type' => 'textfield',
           '#title' => $this->t('Textfield with error'),
           '#description' => $this->t('Error on field inside a fieldset description'),
-        ),
-      ),
-      'fieldset_parent' => array(
+        ],
+      ],
+      'fieldset_parent' => [
         '#type' => 'fieldset',
-        '#title' => 'Fieldset parent with tree',
+        '#title' => $this->t('Fieldset parent with tree'),
         '#tree' => TRUE,
-        '#description' => 'Fieldset with #tree => true',
-        'test_child_required' => array(
+        '#description' => $this->t('Fieldset with #tree => true'),
+        'test_child_required' => [
           '#type' => 'textfield',
           '#title' => $this->t('Textfield child required'),
-          '#description' => 'Textfield child required description',
+          '#description' => $this->t('Textfield child required description'),
           '#required' => TRUE,
-        ),
-        'test_child_custom_error' => array(
+        ],
+        'test_child_custom_error' => [
           '#type' => 'textfield',
           '#title' => $this->t('Textfield child width custom error'),
-          '#description' => 'Textfield child width custom error description',
-        ),
-      ),
-      'text_format_content' => array(
+          '#description' => $this->t('Textfield child width custom error description'),
+        ],
+      ],
+      'text_format_content' => [
         '#type' => 'text_format',
         '#required' => TRUE,
         '#title' => $this->t('Text area with filter selection (required)'),
-        '#description' => 'Text area with format switcher description',
-      ),
-      'managed_file' => array(
+        '#description' => $this->t('Text area with format switcher description'),
+      ],
+      'managed_file' => [
         '#type' => 'managed_file',
         '#required' => TRUE,
         '#title' => $this->t('Managed file'),
         '#description' => $this->t('Upload widget description'),
-      ),
-      'details_closed' => array(
+      ],
+      'details_closed' => [
         '#type' => 'details',
         '#title' => $this->t('Details closed'),
         '#open' => FALSE,
         '#description' => $this->t('Details description'),
-        'test_child_required_2' => array(
+        'test_child_required_2' => [
           '#type' => 'textfield',
           '#title' => $this->t('Textfield child required'),
           '#required' => TRUE,
-        ),
-        'test_child_custom_error_2' => array(
+        ],
+        'test_child_custom_error_2' => [
           '#type' => 'textfield',
           '#title' => $this->t('Textfield child width custom error 2'),
-        ),
-        'nested_details_closed' => array(
+        ],
+        'nested_details_closed' => [
           '#type' => 'details',
           '#title' => $this->t('Nested details closed'),
           '#open' => FALSE,
-          'test_details_child_child_required' => array(
+          'test_details_child_child_required' => [
             '#type' => 'textfield',
             '#title' => $this->t('Nested details child textfield required'),
             '#required' => TRUE,
-          ),
-        ),
-      ),
-      'container' => array(
+          ],
+        ],
+      ],
+      'container' => [
         '#type' => 'container',
         '#description' => $this->t('Container description'),
-        'test_child_required_3' => array(
+        'test_child_required_3' => [
           '#type' => 'textfield',
           '#title' => $this->t('Textfield child title'),
           '#description' => $this->t('Textfield child in a container'),
-        ),
-      ),
-      'vertical_tabs' => array(
+        ],
+      ],
+      'vertical_tabs' => [
         '#title' => $this->t('Vertical tabs'),
         '#type' => 'vertical_tabs',
-      ),
-      'vertical_tabs_details_1' => array(
+      ],
+      'vertical_tabs_details_1' => [
         '#type' => 'details',
         '#title' => $this->t('First group element'),
         '#group' => 'vertical_tabs',
         '#required' => TRUE,
-        'test_child_required_2' => array(
+        'test_child_required_2' => [
           '#type' => 'textfield',
           '#title' => $this->t('Textfield child required'),
           '#required' => TRUE,
-        ),
-      ),
-      'vertical_tabs_details_2' => array(
+        ],
+      ],
+      'vertical_tabs_details_2' => [
         '#type' => 'details',
         '#title' => $this->t('Second group element'),
         '#group' => 'vertical_tabs',
         '#required' => TRUE,
-        'test_child_required_3' => array(
+        'test_child_required_3' => [
           '#type' => 'textfield',
           '#title' => $this->t('Second textfield child required'),
           '#required' => TRUE,
-        ),
-      ),
-      'vertical_tabs_details_3' => array(
+        ],
+      ],
+      'vertical_tabs_details_3' => [
         '#type' => 'details',
         '#title' => $this->t('Third group element'),
         '#group' => 'vertical_tabs',
-        'nothing' => array(
+        'nothing' => [
           '#markup' => $this->t('Nothing here'),
-        )
-      ),
-      'submit' => array(
+        ],
+      ],
+      'submit' => [
         '#type' => 'submit',
         '#value' => 'Submit',
         '#weight' => 100,
         '#prefix' => '<br />',
-      ),
-    );
+      ],
+    ];
 
-    /**
-     * Vertical tabs.
-     */
+    //
+    // Vertical tabs.
+    //
     $form['vertical_tabs'] = [
       '#type' => 'vertical_tabs',
     ];
@@ -256,7 +256,7 @@ class ErrorStyleForm extends FormBase {
     // Supersedes errors from 'required' fields.
     $elements = $this->getFormElements();
     foreach ($elements as $type => $defaults) {
-      $form_state->setErrorByName('test_' . $type, $this->t('Invalid @type', array('@type' => $type)));
+      $form_state->setErrorByName('test_' . $type, $this->t('Invalid @type', ['@type' => $type]));
     }
 
     if ($form_state->getValue('container_error')) {
@@ -287,74 +287,74 @@ class ErrorStyleForm extends FormBase {
    *   Form elements.
    */
   protected function getFormElements() {
-    return array(
-      'entity_autocomplete' => array(
+    return [
+      'entity_autocomplete' => [
         '#target_type' => 'user',
-      ),
+      ],
       'color' => '',
       'date' => '',
-      'datelist' => array(
+      'datelist' => [
         '#default_value' => new DrupalDateTime('2000-01-01 00:00:00'),
         '#date_part_order' => ['month', 'day', 'year', 'hour', 'minute', 'ampm'],
-        '#date_text_parts' => array('year'),
+        '#date_text_parts' => ['year'],
         '#date_year_range' => '2010:2020',
         '#date_increment' => 15,
-      ),
-      'datetime' => array(
+      ],
+      'datetime' => [
         '#default_value' => new DrupalDateTime('2000-01-01 00:00:00'),
         '#date_date_element' => 'date',
         '#date_time_element' => 'none',
         '#date_year_range' => '2010:+3',
         '#required' => TRUE,
-      ),
+      ],
       'email' => '',
       'file' => '',
-      'machine_name' => array(
+      'machine_name' => [
         '#required' => FALSE,
-        '#machine_name' => array(
-          'exists' => array($this, 'exists'),
-        ),
-      ),
+        '#machine_name' => [
+          'exists' => [$this, 'exists'],
+        ],
+      ],
       'number' => '',
       'password' => '',
       'password_confirm' => '',
       'path' => '',
-      'radio' => array(
+      'radio' => [
         '#title' => 'Select me',
-      ),
-      'radios' => array(
-        '#options' => array(
+      ],
+      'radios' => [
+        '#options' => [
           'Check me',
           'Check him',
           'Check her',
-        ),
-      ),
-      'checkbox' => array(
+        ],
+      ],
+      'checkbox' => [
         '#title' => 'Check me',
-      ),
-      'checkboxes' => array(
-        '#options' => array(
+      ],
+      'checkboxes' => [
+        '#options' => [
           'Check me',
           'Check him',
           'Check her',
-        ),
-      ),
+        ],
+      ],
       'range' => '',
       'search' => '',
-      'select' => array(
-        '#options' => array(
+      'select' => [
+        '#options' => [
           'Check me',
           'Check him',
           'Check her',
-        ),
-      ),
+        ],
+      ],
       'textfield' => '',
-      'textarea' => array(
+      'textarea' => [
         '#rows' => 3,
-      ),
+      ],
       'url' => '',
       'weight' => '',
-    );
+    ];
   }
 
   /**
