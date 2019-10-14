@@ -7,3 +7,6 @@ errorstyle.settings:
     disable_inline_form_errors:
       type: integer
       label: 'Disable Inline Form Errors'
+    admin_theme:
+      type: boolean
+      label: 'Test with the admin theme'

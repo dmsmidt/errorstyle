@@ -5,8 +5,6 @@ errorstyle.form:
     _title: 'Form error style test'
   requirements:
     _permission: 'access content'
-  options:
-    _admin_route: TRUE
 
 errorstyle.settings:
   path: 'admin/config/errorstyle'

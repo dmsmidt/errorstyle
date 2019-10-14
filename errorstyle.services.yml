@@ -1,0 +1,6 @@
+services:
+  errorstyle.route_subscriber:
+    class: Drupal\errorstyle\Routing\RouteSubscriber
+    arguments: ['@config.factory', '@router.builder']
+    tags:
+      - { name: 'event_subscriber' }
