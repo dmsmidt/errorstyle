@@ -1,6 +1,6 @@
 # Form Error Style
 
-Drupal 8 core development companion module.
+Drupal 8 and 9 core development companion module.
 
 This module gives an overview of all form elements. It is helpful to test the
 usability and accessibility of forms.
