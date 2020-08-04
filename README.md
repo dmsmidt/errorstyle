@@ -1,3 +1,5 @@
+> This module is no longer supported and developed on Github. See for the most recent changes https://www.drupal.org/project/form_style instead.
+
 # Form Error Style
 
 Drupal 8 and 9 core development companion module.
